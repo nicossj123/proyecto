@@ -38,8 +38,5 @@ public class JugadorPartido {
         this.partido_id_partido = partido_id_partido;
     }
 
-    @Override
-    public String toString() {
-        return "JugadorPartido{" + "jugador_id_jugador=" + jugador_id_jugador + ", partido_id_partido=" + partido_id_partido + '}';
-    }
+    
 }

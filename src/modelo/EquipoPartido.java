@@ -38,10 +38,7 @@ public class EquipoPartido {
         this.partido_id_partido = partido_id_partido;
     }
 
-    @Override
-    public String toString() {
-        return "EquipoPartido{" + "equipo_id_equipo=" + equipo_id_equipo + ", partido_id_partido=" + partido_id_partido + '}';
-    }
+    
 
 
 }
