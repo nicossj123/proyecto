@@ -92,55 +92,6 @@ public class Registro {
             return false;
         }
     }
-
-    public boolean actualizarJugador(Jugador jugador) {
-
-        try {
-            Conexion con = new Conexion();
-            Connection cnx = con.obtenerConexion();
-
-            String query = "UPDATE jugador set id_jugador=?,pnombre=?,apaterno=?,posicion=?,equipo_id_equipo=? WHERE id_jugador=?";
-            PreparedStatement stmt = cnx.prepareStatement(query);
-            stmt.setInt(1, jugador.getId_jugador());
-            stmt.setString(2, jugador.getPnombre());
-            stmt.setString(3, jugador.getApaterno());
-            stmt.setString(4, jugador.getPosicion());
-            stmt.setInt(5, jugador.getId_equipo());
-            
-            stmt.executeUpdate();
-            stmt.close();
-            cnx.close();
-            return true;
-        } catch (SQLException e) {
-            System.out.println("No se pudo actualizar jugador " + e.getMessage());
-            return false;
-        }        
-   }
-    
-    public boolean actualizarEquipo(Equipo equipo) {
-
-        try {
-            Conexion con = new Conexion();
-            Connection cnx = con.obtenerConexion();
-
-            String query = "UPDATE equipo set id_equipo=?,nombre=?,cancha_local=? WHERE id_equipo=?";
-            PreparedStatement stmt = cnx.prepareStatement(query);
-            stmt.setInt(1, equipo.getId_equipo());
-            stmt.setString(2, equipo.getNombre());
-            stmt.setString(3, equipo.getCancha_local());
-           
-            
-            stmt.executeUpdate();
-            stmt.close();
-            cnx.close();
-            
-            return true;
-        } catch (SQLException e) {
-            System.out.println("No se pudo actualizar equipo " + e.getMessage());
-            return false;
-        }
-
-    }
     
     public boolean agregarEquipoCampeonato(Equipo equipo, Campeonato campeonato) {
 
@@ -182,12 +133,28 @@ public class Registro {
             cnx.close();
             return true;
         } catch (SQLException e) {
+            System.out.println("No se pudo agregar partido "+e.getMessage());
             return false;
         }
     }
     
-    
-
-
+    public boolean agregarEquipoPartido(Equipo equipo,Partido partido){
+        try {
+            Conexion con = new Conexion();
+            Connection cnx = con.obtenerConexion();
+        
+            String query = "INSERT INTO equipopartido (equipo_id_equipo,partido_id_partido) VALUES (?,?)";
+            PreparedStatement stmt = cnx.prepareStatement(query);
+            stmt.setInt(1, equipo.getId_equipo());
+            stmt.setInt(2, partido.getId_partido());
+        
+            stmt.executeQuery();
+            stmt.close();
+            cnx.close();
+            return true;
+        } catch (Exception e) {            
+            return false;
+        }                        
+    }        
 }
 
