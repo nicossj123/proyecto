@@ -125,12 +125,15 @@ public class Registro {
             Conexion con = new Conexion();
             Connection cnx = con.obtenerConexion();
             
-            String query = "INSERT INTO partido(id_partido,duracion_min,id_arbitro,id_campeonato,cancha,fecha) VALUES (?,?,?,?,?)";
+            String query = "INSERT INTO partido(id_partido,duracion_min,id_arbitro,id_campeonato,cancha,fecha) VALUES (?,?,?,?,?,?)";
             PreparedStatement stmt = cnx.prepareStatement(query);
             stmt.setInt(1, partido.getId_partido());
             stmt.setInt(2, partido.getDuracion_min());
-            stmt.setString(3, partido.getCancha());
-            stmt.setDate(4, (Date) partido.getFecha());
+            stmt.setInt(3, partido.getId_arbitro());
+            stmt.setInt(4, partido.getId_arbitro());
+            stmt.setInt(5, partido.getId_campeonato());
+            stmt.setString(6, partido.getCancha());
+            stmt.setDate(7, (Date) partido.getFecha());
             
             stmt.executeUpdate();
             stmt.close();
@@ -450,8 +453,10 @@ public class Registro {
                 Partido partido = new Partido();
                 partido.setId_partido(rs.getInt("id_partido"));
                 partido.setDuracion_min(rs.getInt("duracion_min"));
+                partido.setId_arbitro(rs.getInt("id_arbitro"));
                 partido.setId_campeonato(rs.getInt("id_campeonato"));
-                partido.setId_arbitro(rs.getInt("id_arbitro"));                
+                partido.setCancha(rs.getString("cancha"));
+                partido.setFecha(rs.getDate("fecha"));
                 lista.add(partido);
             }
             rs.close();
