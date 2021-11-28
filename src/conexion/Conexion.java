@@ -11,14 +11,19 @@ public class Conexion {
         Connection conec = null;
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            conec = DriverManager.getConnection("jdbc:mysql://localhost:3306/libreria","root","");
+            conec = DriverManager.getConnection("jdbc:mysql://localhost:3306/organizador_campeonatos","root","");
             System.out.println("Conexion exitosa!");
         } catch (ClassNotFoundException | SQLException e) {
             System.out.println("Error en conexion "+ e.getMessage());
         }
         return conec;
     }    
-
+    public static void main(String[] args) {
+        Conexion con = new Conexion();
+        Connection cnx = con.obtenerConexion();
+        
+    }
+    
 }
 
 
