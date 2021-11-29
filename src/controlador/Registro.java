@@ -453,5 +453,37 @@ public class Registro {
         }
         return lista;
     }
+
+    public List<Partido> listarPartidos2(){
+        List<Partido> lista = new ArrayList<>();
+        try {
+            Conexion con = new Conexion();
+            Connection cnx = con.obtenerConexion();
+            
+            String query = "SELECT * FROM partido";
+            PreparedStatement stmt = cnx.prepareStatement(query);
+            
+            
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()){
+                Partido partido = new Partido();
+                partido.setId_partido(rs.getInt("id_partido"));
+                partido.setDuracion_min(rs.getInt("duracion_min"));
+                partido.setId_arbitro(rs.getInt("id_arbitro"));
+                partido.setId_campeonato(rs.getInt("id_campeonato"));
+                partido.setCancha(rs.getString("cancha"));
+                partido.setFecha(rs.getDate("fecha"));
+                lista.add(partido);
+            }
+            rs.close();
+            stmt.close();
+            cnx.close();
+        } catch (SQLException e) {
+            System.out.println("Error SQL al listar partidos "+ e.getMessage());
+        }
+        return lista;
+    }
 }
+
+
 

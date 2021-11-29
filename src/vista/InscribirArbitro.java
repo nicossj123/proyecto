@@ -52,7 +52,7 @@ public class InscribirArbitro extends javax.swing.JFrame {
             }
         });
 
-        btn_eliminar_arbitro.setText("Visualizar arbitros");
+        btn_eliminar_arbitro.setText("Ver arbitros");
         btn_eliminar_arbitro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_eliminar_arbitroActionPerformed(evt);
@@ -83,7 +83,7 @@ public class InscribirArbitro extends javax.swing.JFrame {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btn_inscribir)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
                         .addComponent(btn_eliminar_arbitro)
                         .addGap(47, 47, 47)
                         .addComponent(btn_volver)

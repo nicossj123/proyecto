@@ -39,7 +39,7 @@
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="btn_inscribir" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="39" max="32767" attributes="0"/>
+                      <EmptySpace pref="71" max="32767" attributes="0"/>
                       <Component id="btn_eliminar_arbitro" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
                       <Component id="btn_volver" min="-2" max="-2" attributes="0"/>
@@ -96,7 +96,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="btn_eliminar_arbitro">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Visualizar arbitros"/>
+        <Property name="text" type="java.lang.String" value="Ver arbitros"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_eliminar_arbitroActionPerformed"/>

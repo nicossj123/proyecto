@@ -16,7 +16,9 @@ import javax.swing.table.DefaultTableModel;
  * @author TonyMontanaPC
  */
 public class EliminarArbitro extends javax.swing.JFrame {
-
+    
+    
+    
     /**
      * Creates new form EliminarArbitro
      */
@@ -41,7 +43,6 @@ public class EliminarArbitro extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         btn_eliminar = new javax.swing.JButton();
         txt_volver = new javax.swing.JButton();
-        btn_asignar = new javax.swing.JButton();
 
         jButton1.setText("jButton1");
 
@@ -67,9 +68,16 @@ public class EliminarArbitro extends javax.swing.JFrame {
             Class[] types = new Class [] {
                 java.lang.Integer.class, java.lang.String.class, java.lang.Boolean.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
         jScrollPane1.setViewportView(jTable1);
@@ -98,13 +106,6 @@ public class EliminarArbitro extends javax.swing.JFrame {
             }
         });
 
-        btn_asignar.setText("Asignar arbitro a partido");
-        btn_asignar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_asignarActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -120,12 +121,9 @@ public class EliminarArbitro extends javax.swing.JFrame {
                     .addComponent(btn_eliminar))
                 .addGap(16, 16, 16))
             .addGroup(layout.createSequentialGroup()
-                .addGap(73, 73, 73)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btn_mostar_arbitros)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btn_asignar))
+                .addGap(79, 79, 79)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btn_mostar_arbitros)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -133,9 +131,7 @@ public class EliminarArbitro extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(21, 21, 21)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_mostar_arbitros)
-                    .addComponent(btn_asignar))
+                .addComponent(btn_mostar_arbitros)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(24, 24, 24)
@@ -174,17 +170,13 @@ public class EliminarArbitro extends javax.swing.JFrame {
         int id = Integer.parseInt(this.txt_id_arbitro.getText());
         registro.eliminarArbitro(id);
         this.txt_id_arbitro.setText("");
+        this.txt_id_arbitro.requestFocus();
     }//GEN-LAST:event_btn_eliminarActionPerformed
 
     private void txt_volverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_volverActionPerformed
         dispose();
         new InscribirArbitro().setVisible(true);
     }//GEN-LAST:event_txt_volverActionPerformed
-
-    private void btn_asignarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_asignarActionPerformed
-        dispose();
-        new AsignarArbitro().setVisible(true);
-    }//GEN-LAST:event_btn_asignarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -222,7 +214,6 @@ public class EliminarArbitro extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn_asignar;
     private javax.swing.JButton btn_eliminar;
     private javax.swing.JButton btn_mostar_arbitros;
     private javax.swing.JButton jButton1;
