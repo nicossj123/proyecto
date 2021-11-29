@@ -17,13 +17,7 @@ public class Conexion {
             System.out.println("Error en conexion "+ e.getMessage());
         }
         return conec;
-    }    
-    public static void main(String[] args) {
-        Conexion con = new Conexion();
-        Connection cnx = con.obtenerConexion();
-        
-    }
-    
+    }          
 }
 
 

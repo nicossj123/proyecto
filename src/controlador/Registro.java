@@ -31,13 +31,13 @@ public class Registro {
             Conexion con = new Conexion();
             Connection cnx = con.obtenerConexion();
 
-            String query = "INSERT INTO jugador(id_jugador,pnombre,apaterno,posicion,equipo_id_equipo)VALUES (?,?,?,?,?)";
+            String query = "INSERT INTO jugador(pnombre,apaterno,posicion,id_equipo)VALUES (?,?,?,?)";
             PreparedStatement stmt = cnx.prepareStatement(query);
-            stmt.setInt(1, jugador.getId_equipo());
-            stmt.setString(2, jugador.getPnombre());
-            stmt.setString(3, jugador.getApaterno());
-            stmt.setString(4, jugador.getPosicion());
-            stmt.setInt(5, jugador.getId_equipo());
+            //stmt.setInt(1, jugador.getId_equipo());
+            stmt.setString(1, jugador.getPnombre());
+            stmt.setString(2, jugador.getApaterno());
+            stmt.setString(3, jugador.getPosicion());
+            stmt.setInt(4, jugador.getId_equipo());
 
             stmt.executeUpdate();
             cnx.close();
@@ -56,11 +56,11 @@ public class Registro {
             Conexion con = new Conexion();
             Connection cnx = con.obtenerConexion();
 
-            String query = "INSERT INTO equipo(id_equipo,nombre,cancha_local)VALUES (?,?,?)";
+            String query = "INSERT INTO equipo(nombre,cancha_local)VALUES (?,?)";
             PreparedStatement stmt = cnx.prepareStatement(query);
-            stmt.setInt(1, equipo.getId_equipo());
-            stmt.setString(2, equipo.getNombre());
-            stmt.setString(3, equipo.getCancha_local());
+            //stmt.setInt(1, equipo.getId_equipo());
+            stmt.setString(1, equipo.getNombre());
+            stmt.setString(2, equipo.getCancha_local());
 
             stmt.executeUpdate();
             cnx.close();
@@ -80,11 +80,11 @@ public class Registro {
             Conexion con = new Conexion();
             Connection cnx = con.obtenerConexion();
 
-            String query = "INSERT INTO arbitro(id_arbitro,asignado,nombre)VALUES (?,?,?)";
+            String query = "INSERT INTO arbitro(asignado,nombre)VALUES (?,?)";
             PreparedStatement stmt = cnx.prepareStatement(query);
-            stmt.setInt(1, arbitro.getId_arbitro());
-            stmt.setBoolean(2, arbitro.isAsignado());
-            stmt.setString(3, arbitro.getNombre());
+            //stmt.setInt(1, arbitro.getId_arbitro());
+            stmt.setBoolean(1, arbitro.isAsignado());
+            stmt.setString(2, arbitro.getNombre());
 
             stmt.executeUpdate();
             cnx.close();
@@ -97,28 +97,6 @@ public class Registro {
         }
     }
     
-    public boolean agregarEquipoCampeonato(Equipo equipo, Campeonato campeonato) {
-
-        try {
-            Conexion con = new Conexion();
-            Connection cnx = con.obtenerConexion();
-
-            String query = "INSERT INTO EquipoCampeonato(equipo_id_equipo,campeonato_id_campeonato)VALUES (?,?)";
-            PreparedStatement stmt = cnx.prepareStatement(query);
-            stmt.setInt(1, equipo.getId_equipo());
-            stmt.setInt(2, campeonato.getId_campeonato());
-            
-
-            stmt.executeUpdate();
-            cnx.close();
-            stmt.close();
-            System.out.println("Equipo insertado correctamente");
-            return true;
-        } catch (SQLException e) {
-            System.out.println("No se pudo insertar equipo al campeonato " + e.getMessage());
-            return false;
-        }
-    }
      
     public boolean agregarPartido(Partido partido){
         try {
@@ -143,26 +121,7 @@ public class Registro {
             System.out.println("No se pudo agregar partido "+e.getMessage());
             return false;
         }
-    }
-    
-    public boolean agregarEquipoPartido(Equipo equipo,Partido partido){
-        try {
-            Conexion con = new Conexion();
-            Connection cnx = con.obtenerConexion();
-        
-            String query = "INSERT INTO equipopartido (equipo_id_equipo,partido_id_partido) VALUES (?,?)";
-            PreparedStatement stmt = cnx.prepareStatement(query);
-            stmt.setInt(1, equipo.getId_equipo());
-            stmt.setInt(2, partido.getId_partido());
-        
-            stmt.executeQuery();
-            stmt.close();
-            cnx.close();
-            return true;
-        } catch (Exception e) {            
-            return false;
-        }                        
-    }        
+    }    
     
     public boolean eliminarArbitro(int id_arbitro){
         try {
@@ -384,7 +343,7 @@ public class Registro {
             Conexion con = new Conexion();
             Connection cnx = con.obtenerConexion();
 
-            String query = "SELECT id_partido,duracion_min,id_arbitro,cancha,fecha FROM partido WHERE id_partido=?";
+            String query = "SELECT id_partido,duracion_min,id_arbitro,id_campeonato,cancha,fecha FROM partido WHERE id_partido=?";
             PreparedStatement stmt = cnx.prepareStatement(query);
             stmt.setInt(1, id_partido);
 
@@ -393,10 +352,10 @@ public class Registro {
             if (rs.next()) {
                 partido.setId_partido(rs.getInt("id_partido"));
                 partido.setDuracion_min(rs.getInt("duracion_min"));
+                partido.setId_arbitro(rs.getInt("id_arbitro"));
+                partido.setId_campeonato(rs.getInt("id_campeonato"));
                 partido.setCancha(rs.getString("cancha"));
                 partido.setFecha(rs.getDate("fecha"));
-                partido.setId_arbitro(rs.getInt("id_arbitro"));
-                
                 
             }
             rs.close();
@@ -415,7 +374,7 @@ public class Registro {
             Conexion con = new Conexion();
             Connection cnx = con.obtenerConexion();
             
-            String query = "SELECT * FROM jugador where equipo_id_equipo=?";
+            String query = "SELECT * FROM jugador where id_equipo=?";
             PreparedStatement stmt = cnx.prepareStatement(query);
             stmt.setInt(1, id_equipo);
             
@@ -426,7 +385,7 @@ public class Registro {
                 jugador.setPnombre(rs.getString("pnombre"));
                 jugador.setApaterno(rs.getString("apaterno"));
                 jugador.setPosicion(rs.getString("posicion"));
-                jugador.setId_equipo(rs.getInt("equipo_id_equipo"));
+                jugador.setId_equipo(rs.getInt("id_equipo"));
                 lista.add(jugador);
             }
             rs.close();
@@ -444,7 +403,7 @@ public class Registro {
             Conexion con = new Conexion();
             Connection cnx = con.obtenerConexion();
             
-            String query = "SELECT * FROM partido where campeonato_id_campeonato=?";
+            String query = "SELECT * FROM partido where id_campeonato=?";
             PreparedStatement stmt = cnx.prepareStatement(query);
             stmt.setInt(1, id_campeonato);
             
@@ -464,6 +423,33 @@ public class Registro {
             cnx.close();
         } catch (SQLException e) {
             System.out.println("Error SQL al listar partidos "+ e.getMessage());
+        }
+        return lista;
+    }
+
+    public List<Arbitro> listarArbitros(){
+        List<Arbitro> lista = new ArrayList<>();
+        try {
+            Conexion con = new Conexion();
+            Connection cnx = con.obtenerConexion();
+            
+            String query = "SELECT id_arbitro,asignado,nombre FROM arbitro";
+            PreparedStatement stmt = cnx.prepareStatement(query);
+            
+            
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()){
+                Arbitro arbitro = new Arbitro();
+                arbitro.setId_arbitro(rs.getInt("id_arbitro"));
+                arbitro.setAsignado(rs.getBoolean("asignado"));
+                arbitro.setNombre(rs.getString("nombre"));
+                lista.add(arbitro);
+            }
+            rs.close();
+            stmt.close();
+            cnx.close();
+        } catch (SQLException e) {
+            System.out.println("Error SQL al listar arbitros "+ e.getMessage());
         }
         return lista;
     }

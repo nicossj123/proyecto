@@ -29,7 +29,7 @@ public class Menú extends javax.swing.JFrame {
 
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        menuitem_inscribirarbitro = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
@@ -39,15 +39,19 @@ public class Menú extends javax.swing.JFrame {
         jMenuItem8 = new javax.swing.JMenuItem();
         jMenuItem9 = new javax.swing.JMenuItem();
         jMenuItem10 = new javax.swing.JMenuItem();
-        jMenuItem11 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Organizador Campeonatos");
 
         jMenu3.setText("Inscripcion");
 
-        jMenuItem1.setText("Inscribir arbitro");
-        jMenu3.add(jMenuItem1);
+        menuitem_inscribirarbitro.setText("Inscribir arbitro");
+        menuitem_inscribirarbitro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuitem_inscribirarbitroActionPerformed(evt);
+            }
+        });
+        jMenu3.add(menuitem_inscribirarbitro);
 
         jMenuItem2.setText("Inscribir campeonato");
         jMenu3.add(jMenuItem2);
@@ -87,9 +91,6 @@ public class Menú extends javax.swing.JFrame {
         jMenuItem10.setText("Visualizar partido");
         jMenu4.add(jMenuItem10);
 
-        jMenuItem11.setText("jMenuItem11");
-        jMenu4.add(jMenuItem11);
-
         jMenuBar1.add(jMenu4);
 
         setJMenuBar(jMenuBar1);
@@ -115,6 +116,12 @@ public class Menú extends javax.swing.JFrame {
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void menuitem_inscribirarbitroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuitem_inscribirarbitroActionPerformed
+        dispose();
+        new InscribirArbitro().setVisible(true);
+        
+    }//GEN-LAST:event_menuitem_inscribirarbitroActionPerformed
 
     /**
      * @param args the command line arguments
@@ -155,9 +162,7 @@ public class Menú extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
-    private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
@@ -165,5 +170,6 @@ public class Menú extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
+    private javax.swing.JMenuItem menuitem_inscribirarbitro;
     // End of variables declaration//GEN-END:variables
 }
