@@ -58,7 +58,7 @@ public class InscribirPartido extends javax.swing.JFrame {
         txt_id_arbitro = new javax.swing.JTextField();
         btn_asignar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -156,62 +156,59 @@ public class InscribirPartido extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGroup(layout.createSequentialGroup()
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(54, 54, 54)
+                            .addComponent(jButton1))
+                        .addGroup(layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(jLabel1))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(34, 34, 34)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 519, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addContainerGap(80, Short.MAX_VALUE))
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(32, 32, 32)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel2)
+                        .addComponent(jLabel3)
+                        .addComponent(jLabel4))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(25, 25, 25)
+                            .addComponent(txt_dd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(12, 12, 12)
+                            .addComponent(txt_mm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(txt_aaaa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(28, 28, 28)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(txt_duracion)
+                                .addComponent(txt_cancha))
+                            .addGap(63, 63, 63)))
+                    .addComponent(btn_inscribir)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
+                        .addGap(10, 10, 10)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btn_asignar)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(10, 10, 10)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel9)
                                     .addComponent(jLabel6))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txt_id_partido, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txt_id_arbitro, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(54, 54, 54)
-                                .addComponent(jButton1))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(34, 34, 34)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 436, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel1)))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(32, 32, 32)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel2)
-                                .addComponent(jLabel3)
-                                .addComponent(jLabel4))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(25, 25, 25)
-                                    .addComponent(txt_dd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(12, 12, 12)
-                                    .addComponent(txt_mm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(28, 28, 28)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(txt_duracion)
-                                        .addComponent(txt_cancha))
-                                    .addGap(63, 63, 63)))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(txt_aaaa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(0, 0, Short.MAX_VALUE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(btn_inscribir)
-                                    .addGap(138, 138, 138)))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(86, 86, 86)
-                        .addComponent(btn_asignar)))
-                .addContainerGap(163, Short.MAX_VALUE))
+                                    .addComponent(txt_id_arbitro, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txt_id_partido, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addContainerGap(396, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -244,35 +241,35 @@ public class InscribirPartido extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(txt_id_partido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
                     .addComponent(txt_id_arbitro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btn_asignar)
-                .addContainerGap(143, Short.MAX_VALUE))
+                .addContainerGap(141, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        int id,duracion,id_arbitro,id_campeonato;
+        int id, duracion, id_arbitro, id_campeonato;
         String cancha;
         Date fecha;
-        
+
         Registro reg = new Registro();
         DefaultTableModel modelo = (DefaultTableModel) this.jTable1.getModel();
         modelo.setRowCount(0);
         List<Partido> lista = reg.listarPartidos2();
         for (Partido partido : lista) {
-            id=partido.getId_partido();
-            duracion=partido.getDuracion_min();
-            id_arbitro=partido.getId_arbitro();
-            id_campeonato=partido.getId_campeonato();
-            cancha=partido.getCancha();
-            fecha=partido.getFecha();
-            modelo.addRow(new Object []{id,duracion,id_arbitro,id_campeonato,cancha,fecha});
+            id = partido.getId_partido();
+            duracion = partido.getDuracion_min();
+            id_arbitro = partido.getId_arbitro();
+            id_campeonato = partido.getId_campeonato();
+            cancha = partido.getCancha();
+            fecha = partido.getFecha();
+            modelo.addRow(new Object[]{id, duracion, id_arbitro, id_campeonato, cancha, fecha});
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -282,37 +279,36 @@ public class InscribirPartido extends javax.swing.JFrame {
 
     private void btn_inscribirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_inscribirActionPerformed
         int duracion = Integer.parseInt(this.txt_duracion.getText());
-        String cancha=this.txt_cancha.getText();
+        String cancha = this.txt_cancha.getText();
         String dia = this.txt_dd.getText();
         String mes = this.txt_mm.getText();
         String ano = this.txt_aaaa.getText();
         Registro reg = new Registro();
         Date fecha;
-        
+
         if (dia.isEmpty() || mes.isEmpty() || ano.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Debe ingresar la fecha correctamente", "AVISO", 1);
             this.txt_dd.requestFocus();
             return;
         }
-        String fechaStr = dia+"/"+mes+"/"+ano;
+        String fechaStr = dia + "/" + mes + "/" + ano;
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-        
+
         try {
-            fecha = formato.parse(fechaStr);           
+            fecha = formato.parse(fechaStr);
         } catch (ParseException e) {
             JOptionPane.showMessageDialog(this, "Ingrese fecha en el formato correcto (dd/mm/aaaa)", "Formato incorrecto", 1);
             this.txt_dd.requestFocus();
-            return;            
+            return;
         }
         Partido partido = new Partido(0, duracion, 0, 0, cancha, fecha);
         try {
-            reg.agregarPartido(partido);            
-        } 
-        catch (Exception e) {
+            reg.agregarPartido(partido);
+        } catch (Exception e) {
             System.out.println(e.getMessage());
             JOptionPane.showMessageDialog(this, "No se pudo agregar partido", "Aviso", 1);
         }
-        
+
     }//GEN-LAST:event_btn_inscribirActionPerformed
 
     private void txt_ddFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_ddFocusGained
@@ -328,39 +324,43 @@ public class InscribirPartido extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_aaaaFocusGained
 
     private void btn_asignarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_asignarActionPerformed
-        int id_arbitro,id_partido;
-        boolean flag;
+        int id_arbitro, id_partido;
+
         Registro reg = new Registro();
         List<Arbitro> lista = reg.listarArbitros();
         List<Partido> listaP = reg.listarPartidos2();
         id_arbitro = Integer.parseInt(this.txt_id_arbitro.getText());
         id_partido = Integer.parseInt(this.txt_id_partido.getText());
-               
+
         for (Arbitro arbitro : lista) {
-            if (arbitro.isAsignado()==true) {
-                flag = false;
+            if (arbitro.isAsignado() == true) {
+
                 JOptionPane.showMessageDialog(this, "El arbitro que ingreso ya está asginado", "Aviso", 1);
                 this.txt_id_partido.setText("");
-            }            
-            if (arbitro.getId_arbitro()!=id_arbitro) {
-                flag = false;
+            }
+            if (arbitro.getId_arbitro() != id_arbitro) {
+
                 JOptionPane.showMessageDialog(this, "El arbitro que ingreso no existe", "Aviso", 1);
                 this.txt_id_arbitro.setText("");
-            }     
-            if (id_arbitro == 0) {
-                JOptionPane.showMessageDialog(this, "Debe ingresar ID del arbitro", "Aviso" , 1);
-                this.txt_id_arbitro.setText("");
-            }       
-        for (Partido partido : listaP) {
-            if (partido.getId_partido ) {
-                JOptionPane.showMessageDialog(this, "El partido que ingreso no existe", "Aviso", 1);
-                this.txt_id_partido.setText("");
             }
+
+    }//GEN-LAST:event_btn_asignarActionPerformed
+        boolean flag=false;
+        for (Partido partido : listaP) {
             
+            if (partido.getId_partido()==id_partido) {
+                flag = true;
+                break;
+            }           
+        }
+        if (flag==false) {
+            JOptionPane.showMessageDialog(this, "No existe el partido ingresado", "Aviso", 1);
         }
         
-        
-    }//GEN-LAST:event_btn_asignarActionPerformed
+        if (flag==true) {
+            reg.insertarArbitro(id_arbitro,id_partido);
+        }                                        
+    }
 
     /**
      * @param args the command line arguments

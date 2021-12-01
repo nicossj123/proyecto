@@ -26,6 +26,30 @@ import java.util.Date;
  */
 public class Registro {
 
+    public boolean agregarCampeonato(Campeonato campeonato) {
+
+        try {
+            Conexion con = new Conexion();
+            Connection cnx = con.obtenerConexion();
+
+            String query = "INSERT INTO campeonato(id_campeonato,cant_equipos)VALUES (?,?)";
+            PreparedStatement stmt = cnx.prepareStatement(query);
+            //stmt.setInt(1, jugador.getId_equipo());
+            stmt.setInt(1, campeonato.getId_campeonato());
+            stmt.setInt(2, campeonato.getCant_equipos());
+            
+
+            stmt.executeUpdate();
+            cnx.close();
+            stmt.close();
+            System.out.println("Campeonato insertado correctamente");
+            return true;
+        } catch (SQLException e) {
+            System.out.println("No se pudo insertar campeonato" + e.getMessage());
+            return false;
+        }
+    }
+    
     public boolean agregarJugador(Jugador jugador) {
 
         try {
@@ -38,7 +62,7 @@ public class Registro {
             stmt.setString(1, jugador.getPnombre());
             stmt.setString(2, jugador.getApaterno());
             stmt.setString(3, jugador.getPosicion());
-            stmt.setInt(4, jugador.getId_equipo());
+            stmt.setInt(4,jugador.getId_equipo());
 
             stmt.executeUpdate();
             cnx.close();
@@ -218,36 +242,7 @@ public class Registro {
             System.out.println("No se pudo eliminar partido"+e.getMessage());
             return false;
         }
-    }
-
-    public Arbitro buscarArbitro(int id_arbitro) {
-
-        Arbitro arbitro = new Arbitro();
-        try {
-            Conexion con = new Conexion();
-            Connection cnx = con.obtenerConexion();
-
-            String query = "SELECT id_arbitro,asignado,nombre FROM arbitro WHERE id_arbitro=?";
-            PreparedStatement stmt = cnx.prepareStatement(query);
-            stmt.setInt(1, id_arbitro);
-
-            ResultSet rs = stmt.executeQuery();
-
-            if (rs.next()) {
-                arbitro.setId_arbitro(rs.getInt("id_arbitro"));
-                arbitro.setAsignado(rs.getBoolean("asignado"));
-                arbitro.setNombre(rs.getString("nombre"));
-                
-            }
-            rs.close();
-            stmt.close();
-            cnx.close();
-
-        } catch (SQLException e) {
-            System.out.println("Error SQL al listar arbitro " + e.getMessage());
-        }
-        return arbitro;
-    }
+    }    
 
     public Campeonato buscarCampeonato(int id_campeonato) {
 
@@ -485,7 +480,135 @@ public class Registro {
         }
         return lista;
     }
+    
+    public boolean insertarArbitro(int id_arbitro,int id_partido){
+        try {
+            Conexion con = new Conexion();
+            Connection cnx = con.obtenerConexion();
+        
+            String query = "UPDATE partido SET id_arbitro=? WHERE id_partido=?";
+            PreparedStatement stmt = cnx.prepareStatement(query);
+            stmt.setInt(1, id_arbitro);
+            stmt.setInt(2, id_partido);
+            stmt.executeUpdate();
+            stmt.close();
+            cnx.close();
+            return true;
+        }
+        
+        catch (SQLException e) {
+            System.out.println("No se pudo ingresar arbitro a partido"+e.getMessage());
+            return false;
+        }
+        
+    }
+    
+    public List<Campeonato> listarCampeonatos(){
+        List<Campeonato> lista = new ArrayList<>();
+        try {
+            Conexion con = new Conexion();
+            Connection cnx = con.obtenerConexion();
+            
+            String query = "SELECT * FROM campeonato";
+            PreparedStatement stmt = cnx.prepareStatement(query);
+            
+            
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()){
+                Campeonato campeonato = new Campeonato();
+                campeonato.setId_campeonato(rs.getInt("id_campeonato"));
+                campeonato.setCant_equipos(rs.getInt("cant_equipos"));                
+                lista.add(campeonato);
+            }
+            rs.close();
+            stmt.close();
+            cnx.close();
+        } catch (SQLException e) {
+            System.out.println("Error SQL al listar campeonatos "+ e.getMessage());
+        }
+        return lista;
+    }
+
+    public boolean insertarPartido(int id_partido,int id_campeonato){
+        try {
+            Conexion con = new Conexion();
+            Connection cnx = con.obtenerConexion();
+        
+            String query = "UPDATE partido SET id_campeonato=? WHERE id_partido=?";
+            PreparedStatement stmt = cnx.prepareStatement(query);
+            stmt.setInt(1, id_campeonato);
+            stmt.setInt(2, id_partido);
+            stmt.executeUpdate();
+            stmt.close();
+            cnx.close();
+            return true;
+        }
+        
+        catch (SQLException e) {
+            System.out.println("No se pudo ingresar campeonato a partido"+e.getMessage());
+            return false;
+        }
+        
+    }
+    
+    public List<Equipo> listarEquipos(){
+        List<Equipo> lista = new ArrayList<>();
+        try {
+            Conexion con = new Conexion();
+            Connection cnx = con.obtenerConexion();
+            
+            String query = "SELECT * FROM equipo";
+            PreparedStatement stmt = cnx.prepareStatement(query);
+            
+            
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()){
+                Equipo equipo = new Equipo();
+                equipo.setId_equipo(rs.getInt("id_equipo"));
+                equipo.setNombre(rs.getString("nombre"));  
+                equipo.setCancha_local(rs.getString("cancha_local"));
+                lista.add(equipo);
+            }
+            rs.close();
+            stmt.close();
+            cnx.close();
+        } catch (SQLException e) {
+            System.out.println("Error SQL al listar equipos "+ e.getMessage());
+        }
+        return lista;
+    }
+    
+//    public List<Jugador> listarJugadores(int id_equipo){
+//        List<Jugador> lista = new ArrayList<>();
+//        try {
+//            Conexion con = new Conexion();
+//            Connection cnx = con.obtenerConexion();
+//            
+//            String query = "SELECT * FROM jugador where id_equipo=?";
+//            PreparedStatement stmt = cnx.prepareStatement(query);
+//            stmt.setInt(1, id_equipo);
+//            
+//            ResultSet rs = stmt.executeQuery();
+//            while (rs.next()){
+//                Jugador jugador = new Jugador();
+//                jugador.setId_jugador(rs.getInt("id_jugador"));
+//                jugador.setPnombre(rs.getString("pnombre"));
+//                jugador.setApaterno(rs.getString("apaterno"));
+//                jugador.setPosicion(rs.getString("posicion"));
+//                jugador.setId_equipo(rs.getInt("id_equipo"));                
+//                lista.add(jugador);
+//            }
+//            rs.close();
+//            stmt.close();
+//            cnx.close();
+//        } catch (SQLException e) {
+//            System.out.println("Error SQL al listar jugadores "+ e.getMessage());
+//        }
+//        return lista;
 }
+
+
+
 
 
 

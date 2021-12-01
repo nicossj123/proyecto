@@ -33,19 +33,16 @@ public class Menú extends javax.swing.JFrame {
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
         jMenuItem5 = new javax.swing.JMenuItem();
-        jMenu4 = new javax.swing.JMenu();
         jMenuItem7 = new javax.swing.JMenuItem();
-        jMenuItem8 = new javax.swing.JMenuItem();
-        jMenuItem9 = new javax.swing.JMenuItem();
-        jMenuItem10 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Organizador Campeonatos");
 
         jMenu3.setText("Inscripcion");
 
-        menuitem_inscribirarbitro.setText("Inscribir arbitro");
+        menuitem_inscribirarbitro.setText("Inscribir/mostrar arbitros");
         menuitem_inscribirarbitro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menuitem_inscribirarbitroActionPerformed(evt);
@@ -53,10 +50,15 @@ public class Menú extends javax.swing.JFrame {
         });
         jMenu3.add(menuitem_inscribirarbitro);
 
-        jMenuItem2.setText("Inscribir campeonato");
+        jMenuItem2.setText("Inscribir/mostrar campeonato");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
         jMenu3.add(jMenuItem2);
 
-        jMenuItem3.setText("Inscribir equipo");
+        jMenuItem3.setText("Inscribir/mostrar equipos");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem3ActionPerformed(evt);
@@ -64,7 +66,7 @@ public class Menú extends javax.swing.JFrame {
         });
         jMenu3.add(jMenuItem3);
 
-        jMenuItem4.setText("Inscribir jugador");
+        jMenuItem4.setText("Inscribir/mostrar jugadores");
         jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem4ActionPerformed(evt);
@@ -72,26 +74,27 @@ public class Menú extends javax.swing.JFrame {
         });
         jMenu3.add(jMenuItem4);
 
-        jMenuItem5.setText("Inscribir Partido");
-        jMenu3.add(jMenuItem5);
+        jMenu1.setText("Inscribir/mostrar partidos");
+
+        jMenuItem5.setText("Mostrar partidos de un campeonato");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem5);
+
+        jMenuItem7.setText("Inscribir partido");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem7ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem7);
+
+        jMenu3.add(jMenu1);
 
         jMenuBar1.add(jMenu3);
-
-        jMenu4.setText("Visualizar");
-
-        jMenuItem7.setText("Visualizar campeonato");
-        jMenu4.add(jMenuItem7);
-
-        jMenuItem8.setText("Visualizar equipo");
-        jMenu4.add(jMenuItem8);
-
-        jMenuItem9.setText("Visualizar jugador");
-        jMenu4.add(jMenuItem9);
-
-        jMenuItem10.setText("Visualizar partido");
-        jMenu4.add(jMenuItem10);
-
-        jMenuBar1.add(jMenu4);
 
         setJMenuBar(jMenuBar1);
 
@@ -110,7 +113,8 @@ public class Menú extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        // TODO add your handling code here:
+        dispose();
+        new InscribirEquipo().setVisible(true);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
@@ -122,6 +126,21 @@ public class Menú extends javax.swing.JFrame {
         new InscribirArbitro().setVisible(true);
         
     }//GEN-LAST:event_menuitem_inscribirarbitroActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        dispose();
+        new InscribirCampeonato().setVisible(true);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        dispose();
+        new MostrarPartidosDeUnCampeonato().setVisible(true);
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+        dispose();
+        new InscribirPartido().setVisible(true);
+    }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -159,17 +178,14 @@ public class Menú extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem7;
-    private javax.swing.JMenuItem jMenuItem8;
-    private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JMenuItem menuitem_inscribirarbitro;
     // End of variables declaration//GEN-END:variables
 }
