@@ -236,7 +236,7 @@ public class InscribirPartido extends javax.swing.JFrame {
             this.txt_dd.requestFocus();
             return;            
         }
-        Partido partido = new Partido(PROPERTIES, duracion, SOMEBITS, duracion, cancha, fecha);
+        Partido partido = new Partido(0, duracion, 32, 43, cancha, fecha);
         try {
             reg.agregarPartido(partido);            
         } catch (Exception e) {

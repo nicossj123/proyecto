@@ -107,11 +107,10 @@ public class Registro {
             PreparedStatement stmt = cnx.prepareStatement(query);
             stmt.setInt(1, partido.getId_partido());
             stmt.setInt(2, partido.getDuracion_min());
-            stmt.setInt(3, partido.getId_arbitro());
-            stmt.setInt(4, partido.getId_arbitro());
-            stmt.setInt(5, partido.getId_campeonato());
-            stmt.setString(6, partido.getCancha());
-            stmt.setDate(7, (Date) partido.getFecha());
+            stmt.setInt(3, partido.getId_arbitro());            
+            stmt.setInt(4, partido.getId_campeonato());
+            stmt.setString(5, partido.getCancha());
+            stmt.setDate(6, (Date) partido.getFecha());
             
             stmt.executeUpdate();
             stmt.close();
