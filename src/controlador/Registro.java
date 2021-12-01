@@ -8,7 +8,7 @@ package controlador;
 import java.sql.PreparedStatement;
 import java.sql.Connection;
 import conexion.Conexion;
-import java.sql.Date;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -18,6 +18,7 @@ import modelo.Campeonato;
 import modelo.Equipo;
 import modelo.Jugador;
 import modelo.Partido;
+import java.util.Date;
 
 /**
  *
@@ -99,25 +100,27 @@ public class Registro {
     
      
     public boolean agregarPartido(Partido partido){
+        Date date;
         try {
+            
             Conexion con = new Conexion();
             Connection cnx = con.obtenerConexion();
             
-            String query = "INSERT INTO partido(id_partido,duracion_min,id_arbitro,id_campeonato,cancha,fecha) VALUES (?,?,?,?,?,?)";
+            String query = "INSERT INTO partido(duracion_min,id_arbitro,id_campeonato,cancha,fecha) VALUES (?,?,?,?,?)";
             PreparedStatement stmt = cnx.prepareStatement(query);
-            stmt.setInt(1, partido.getId_partido());
-            stmt.setInt(2, partido.getDuracion_min());
-            stmt.setInt(3, partido.getId_arbitro());            
-            stmt.setInt(4, partido.getId_campeonato());
-            stmt.setString(5, partido.getCancha());
-            stmt.setDate(6, (Date) partido.getFecha());
+            date = partido.getFecha();
+            stmt.setInt(1, partido.getDuracion_min());
+            stmt.setInt(2, partido.getId_arbitro());            
+            stmt.setInt(3, partido.getId_campeonato());
+            stmt.setString(4, partido.getCancha());
+            stmt.setDate(5, new java.sql.Date(date.getTime()));
             
             stmt.executeUpdate();
             stmt.close();
             cnx.close();
             return true;
         } catch (SQLException e) {
-            System.out.println("No se pudo agregar partido "+e.getMessage());
+            System.out.println("No se pudo agregar partido sql "+e.getMessage());
             return false;
         }
     }    

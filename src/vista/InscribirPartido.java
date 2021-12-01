@@ -110,10 +110,25 @@ public class InscribirPartido extends javax.swing.JFrame {
         jLabel4.setText("Fecha");
 
         txt_dd.setText("dd");
+        txt_dd.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txt_ddFocusGained(evt);
+            }
+        });
 
         txt_mm.setText("mm");
+        txt_mm.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txt_mmFocusGained(evt);
+            }
+        });
 
         txt_aaaa.setText("aaaa");
+        txt_aaaa.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txt_aaaaFocusGained(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -183,7 +198,7 @@ public class InscribirPartido extends javax.swing.JFrame {
                     .addComponent(txt_dd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txt_mm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txt_aaaa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(161, Short.MAX_VALUE))
+                .addContainerGap(86, Short.MAX_VALUE))
         );
 
         pack();
@@ -220,6 +235,7 @@ public class InscribirPartido extends javax.swing.JFrame {
         String mes = this.txt_mm.getText();
         String ano = this.txt_aaaa.getText();
         Registro reg = new Registro();
+        Date fecha;
         
         if (dia.isEmpty() || mes.isEmpty() || ano.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Debe ingresar la fecha correctamente", "AVISO", 1);
@@ -228,7 +244,7 @@ public class InscribirPartido extends javax.swing.JFrame {
         }
         String fechaStr = dia+"/"+mes+"/"+ano;
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-        Date fecha;
+        
         try {
             fecha = formato.parse(fechaStr);           
         } catch (ParseException e) {
@@ -236,14 +252,28 @@ public class InscribirPartido extends javax.swing.JFrame {
             this.txt_dd.requestFocus();
             return;            
         }
-        Partido partido = new Partido(0, duracion, 32, 43, cancha, fecha);
+        Partido partido = new Partido(0, duracion, 0, 0, cancha, fecha);
         try {
             reg.agregarPartido(partido);            
-        } catch (Exception e) {
+        } 
+        catch (Exception e) {
+            System.out.println(e.getMessage());
             JOptionPane.showMessageDialog(this, "No se pudo agregar partido", "Aviso", 1);
         }
         
     }//GEN-LAST:event_btn_inscribirActionPerformed
+
+    private void txt_ddFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_ddFocusGained
+        this.txt_dd.setText("");
+    }//GEN-LAST:event_txt_ddFocusGained
+
+    private void txt_mmFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_mmFocusGained
+        this.txt_mm.setText("");
+    }//GEN-LAST:event_txt_mmFocusGained
+
+    private void txt_aaaaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txt_aaaaFocusGained
+        this.txt_aaaa.setText("");
+    }//GEN-LAST:event_txt_aaaaFocusGained
 
     /**
      * @param args the command line arguments
