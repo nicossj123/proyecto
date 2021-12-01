@@ -346,7 +346,17 @@ public class InscribirPartido extends javax.swing.JFrame {
                 flag = false;
                 JOptionPane.showMessageDialog(this, "El arbitro que ingreso no existe", "Aviso", 1);
                 this.txt_id_arbitro.setText("");
-            }            
+            }     
+            if (id_arbitro == 0) {
+                JOptionPane.showMessageDialog(this, "Debe ingresar ID del arbitro", "Aviso" , 1);
+                this.txt_id_arbitro.setText("");
+            }       
+        for (Partido partido : listaP) {
+            if (partido.getId_partido ) {
+                JOptionPane.showMessageDialog(this, "El partido que ingreso no existe", "Aviso", 1);
+                this.txt_id_partido.setText("");
+            }
+            
         }
         
         
