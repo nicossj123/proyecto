@@ -16,9 +16,7 @@ import javax.swing.table.DefaultTableModel;
  * @author TonyMontanaPC
  */
 public class EliminarArbitro extends javax.swing.JFrame {
-    
-    
-    
+
     /**
      * Creates new form EliminarArbitro
      */
@@ -36,17 +34,28 @@ public class EliminarArbitro extends javax.swing.JFrame {
     private void initComponents() {
 
         jButton1 = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        btn_mostar_arbitros = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        btn_mostar_arbitros = new javax.swing.JButton();
-        txt_id_arbitro = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
+        txt_id_arbitro = new javax.swing.JTextField();
         btn_eliminar = new javax.swing.JButton();
         txt_volver = new javax.swing.JButton();
 
         jButton1.setText("jButton1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jPanel1.setBackground(new java.awt.Color(204, 255, 204));
+
+        btn_mostar_arbitros.setIcon(new javax.swing.ImageIcon("A:\\Desktop\\Ingenieria en informatica\\Ingenieria  en informatca semestre 2\\desarrollo software de escritorio\\Iconos\\ver.png")); // NOI18N
+        btn_mostar_arbitros.setText("Mostrar arbitros");
+        btn_mostar_arbitros.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_mostar_arbitrosActionPerformed(evt);
+            }
+        });
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -82,16 +91,10 @@ public class EliminarArbitro extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTable1);
 
-        btn_mostar_arbitros.setText("Mostrar arbitros");
-        btn_mostar_arbitros.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_mostar_arbitrosActionPerformed(evt);
-            }
-        });
-
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel1.setText("Ingrese id de arbitro que desea eliminar:");
 
+        btn_eliminar.setIcon(new javax.swing.ImageIcon("A:\\Desktop\\Ingenieria en informatica\\Ingenieria  en informatca semestre 2\\desarrollo software de escritorio\\Iconos\\eliminar.png")); // NOI18N
         btn_eliminar.setText("Eliminar");
         btn_eliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -99,6 +102,7 @@ public class EliminarArbitro extends javax.swing.JFrame {
             }
         });
 
+        txt_volver.setIcon(new javax.swing.ImageIcon("A:\\Desktop\\Ingenieria en informatica\\Ingenieria  en informatca semestre 2\\desarrollo software de escritorio\\Iconos\\volver-flecha.png")); // NOI18N
         txt_volver.setText("Volver");
         txt_volver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -106,42 +110,55 @@ public class EliminarArbitro extends javax.swing.JFrame {
             }
         });
 
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txt_volver)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(btn_mostar_arbitros))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGap(59, 59, 59)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGap(15, 15, 15)
+                            .addComponent(jLabel1)
+                            .addGap(27, 27, 27)
+                            .addComponent(txt_id_arbitro, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(30, 30, 30)
+                            .addComponent(btn_eliminar))))
+                .addContainerGap(29, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btn_mostar_arbitros)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(txt_id_arbitro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_eliminar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txt_volver)
+                .addContainerGap(51, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(txt_id_arbitro, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txt_volver)
-                    .addComponent(btn_eliminar))
-                .addGap(16, 16, 16))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(79, 79, 79)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btn_mostar_arbitros)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(btn_mostar_arbitros)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txt_id_arbitro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1)
-                    .addComponent(btn_eliminar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txt_volver)
-                .addContainerGap(33, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -151,7 +168,7 @@ public class EliminarArbitro extends javax.swing.JFrame {
         int id_arbitro;
         boolean asignado;
         String nombre;
-        
+
         Registro registro = new Registro();
         DefaultTableModel modelo = (DefaultTableModel) this.jTable1.getModel();
         modelo.setRowCount(0);
@@ -160,17 +177,34 @@ public class EliminarArbitro extends javax.swing.JFrame {
             id_arbitro = arbitro.getId_arbitro();
             asignado = arbitro.isAsignado();
             nombre = arbitro.getNombre();
-            
-            modelo.addRow(new Object[]{id_arbitro,nombre,asignado});
+
+            modelo.addRow(new Object[]{id_arbitro, nombre, asignado});
         }
     }//GEN-LAST:event_btn_mostar_arbitrosActionPerformed
 
     private void btn_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_eliminarActionPerformed
         Registro registro = new Registro();
         int id = Integer.parseInt(this.txt_id_arbitro.getText());
-        registro.eliminarArbitro(id);
-        this.txt_id_arbitro.setText("");
-        this.txt_id_arbitro.requestFocus();
+        boolean flag = false;
+        List<Arbitro> lista = registro.listarArbitros();
+        for (Arbitro arbitro : lista) {
+            if (arbitro.getId_arbitro() == id) {
+                flag = true;
+                break;
+            }
+        }
+        if (flag == true) {
+            registro.eliminarArbitro(id);
+            JOptionPane.showMessageDialog(this, "Se eliminó el arbitro correctamente", "Aviso", 1);
+            this.txt_id_arbitro.setText("");
+            this.txt_id_arbitro.requestFocus();
+        }
+        if (flag==false) {
+            JOptionPane.showMessageDialog(this, "El arbitro que ingresó no se encuentra", "Aviso", 1);
+             this.txt_id_arbitro.setText("");
+            this.txt_id_arbitro.requestFocus();
+        }
+
     }//GEN-LAST:event_btn_eliminarActionPerformed
 
     private void txt_volverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_volverActionPerformed
@@ -218,6 +252,7 @@ public class EliminarArbitro extends javax.swing.JFrame {
     private javax.swing.JButton btn_mostar_arbitros;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField txt_id_arbitro;

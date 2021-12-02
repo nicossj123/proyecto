@@ -578,33 +578,34 @@ public class Registro {
         return lista;
     }
     
-//    public List<Jugador> listarJugadores(int id_equipo){
-//        List<Jugador> lista = new ArrayList<>();
-//        try {
-//            Conexion con = new Conexion();
-//            Connection cnx = con.obtenerConexion();
-//            
-//            String query = "SELECT * FROM jugador where id_equipo=?";
-//            PreparedStatement stmt = cnx.prepareStatement(query);
-//            stmt.setInt(1, id_equipo);
-//            
-//            ResultSet rs = stmt.executeQuery();
-//            while (rs.next()){
-//                Jugador jugador = new Jugador();
-//                jugador.setId_jugador(rs.getInt("id_jugador"));
-//                jugador.setPnombre(rs.getString("pnombre"));
-//                jugador.setApaterno(rs.getString("apaterno"));
-//                jugador.setPosicion(rs.getString("posicion"));
-//                jugador.setId_equipo(rs.getInt("id_equipo"));                
-//                lista.add(jugador);
-//            }
-//            rs.close();
-//            stmt.close();
-//            cnx.close();
-//        } catch (SQLException e) {
-//            System.out.println("Error SQL al listar jugadores "+ e.getMessage());
-//        }
-//        return lista;
+    public List<Jugador> listarJugadores1(){
+        List<Jugador> lista = new ArrayList<>();
+        try {
+            Conexion con = new Conexion();
+            Connection cnx = con.obtenerConexion();
+            
+            String query = "SELECT * FROM jugador";
+            PreparedStatement stmt = cnx.prepareStatement(query);
+            
+            
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()){
+                Jugador jugador = new Jugador();
+                jugador.setId_jugador(rs.getInt("id_jugador"));
+                jugador.setPnombre(rs.getString("nombre"));
+                jugador.setApaterno(rs.getString("apaterno"));
+                jugador.setPosicion(rs.getString("posicion"));
+                jugador.setId_equipo(rs.getInt("id_equipo"));                
+                lista.add(jugador);
+            }
+            rs.close();
+            stmt.close();
+            cnx.close();
+        } catch (SQLException e) {
+            System.out.println("Error SQL al listar jugadores "+ e.getMessage());
+        }
+        return lista;
+    }
 }
 
 
