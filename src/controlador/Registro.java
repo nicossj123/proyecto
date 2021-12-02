@@ -56,7 +56,7 @@ public class Registro {
             Conexion con = new Conexion();
             Connection cnx = con.obtenerConexion();
 
-            String query = "INSERT INTO jugador(pnombre,apaterno,posicion,id_equipo)VALUES (?,?,?,?)";
+            String query = "INSERT INTO jugador(nombre,apaterno,posicion,id_equipo)VALUES (?,?,?,?)";
             PreparedStatement stmt = cnx.prepareStatement(query);
             //stmt.setInt(1, jugador.getId_equipo());
             stmt.setString(1, jugador.getPnombre());

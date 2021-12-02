@@ -7,19 +7,30 @@ package vista;
 
 import controlador.Registro;
 import java.awt.HeadlessException;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.DefaultListModel;
+
 import javax.swing.JOptionPane;
 import modelo.Jugador;
+import modelo.Equipo;
+
 /**
  *
  * @author TonyMontanaPC
  */
 public class InscribirJugador extends javax.swing.JFrame {
-
+    ArrayList array = new ArrayList<>();
+    DefaultListModel modelo = new DefaultListModel();       
     /**
      * Creates new form InscribirJugador
      */
     public InscribirJugador() {
         initComponents();
+        
+        modelo = new DefaultListModel();
+        jlist_equipos.setModel(modelo);
+        
         rbtn_group.add(rbtn_1);
         rbtn_group.add(rbtn_2);
         rbtn_group.add(rbtn_3);
@@ -47,7 +58,7 @@ public class InscribirJugador extends javax.swing.JFrame {
         txt_nombre = new javax.swing.JTextField();
         txt_apellido = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        jlist_equipos = new javax.swing.JList<>();
         rbtn_1 = new javax.swing.JRadioButton();
         rbtn_2 = new javax.swing.JRadioButton();
         rbtn_4 = new javax.swing.JRadioButton();
@@ -57,6 +68,7 @@ public class InscribirJugador extends javax.swing.JFrame {
         rbtn_7 = new javax.swing.JRadioButton();
         rbtn_8 = new javax.swing.JRadioButton();
         btn_inscribir = new javax.swing.JButton();
+        btn_mostrar_equipos = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -69,12 +81,7 @@ public class InscribirJugador extends javax.swing.JFrame {
 
         jLabel4.setText("Posicion:");
 
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane1.setViewportView(jList1);
+        jScrollPane1.setViewportView(jlist_equipos);
 
         rbtn_1.setText("Lateral");
 
@@ -99,6 +106,13 @@ public class InscribirJugador extends javax.swing.JFrame {
             }
         });
 
+        btn_mostrar_equipos.setText("Mostrar equipos");
+        btn_mostrar_equipos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_mostrar_equiposActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -106,55 +120,51 @@ public class InscribirJugador extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btn_inscribir)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel2)
+                            .addGap(18, 18, 18)
+                            .addComponent(txt_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel3)
+                            .addGap(18, 18, 18)
+                            .addComponent(txt_apellido))
+                        .addComponent(jLabel4))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel2)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(txt_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel3)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(txt_apellido))
-                                .addComponent(jLabel4))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(rbtn_1)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(rbtn_2)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(rbtn_3))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(rbtn_4)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(rbtn_5)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(rbtn_6))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(rbtn_7)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(rbtn_8)))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 260, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(162, 162, 162))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btn_inscribir)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                                .addComponent(rbtn_1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(rbtn_2)
+                                .addGap(18, 18, 18)
+                                .addComponent(rbtn_3))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(rbtn_4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(rbtn_5)
+                                .addGap(18, 18, 18)
+                                .addComponent(rbtn_6))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(rbtn_7)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(rbtn_8))))
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 124, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_mostrar_equipos))
+                .addGap(87, 87, 87))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(12, 12, 12)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
                             .addComponent(txt_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -177,10 +187,13 @@ public class InscribirJugador extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(rbtn_7)
-                            .addComponent(rbtn_8)))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(btn_inscribir)
+                            .addComponent(rbtn_8))
+                        .addGap(18, 18, 18)
+                        .addComponent(btn_inscribir))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btn_mostrar_equipos)
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(54, Short.MAX_VALUE))
         );
 
@@ -188,11 +201,12 @@ public class InscribirJugador extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_inscribirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_inscribirActionPerformed
-        Registro reg = new Registro();                                          
-        String pnombre,apaterno,posicion;
+        Registro reg = new Registro();
+        String pnombre, apaterno, posicion;
         pnombre = this.txt_nombre.getText();
         apaterno = this.txt_apellido.getText();
-        posicion = null;
+        posicion = "";
+        boolean flag = false;
         if (rbtn_1.isSelected()) {
             posicion = rbtn_1.getText();
         }
@@ -217,14 +231,41 @@ public class InscribirJugador extends javax.swing.JFrame {
         if (rbtn_8.isSelected()) {
             posicion = rbtn_8.getText();
         }
-        Jugador jugador = new Jugador(0, pnombre, apaterno, posicion, 0);
-        try {
-            reg.agregarJugador(jugador);
-            JOptionPane.showMessageDialog(this, "El jugador se agrego correctamente", "Aviso", 1);
-        } catch (HeadlessException e) {
-            System.out.println("Error al agregar jugador"+e.getMessage());
+        if (posicion.isEmpty()) {
+            flag = true;
         }
+        Jugador jugador = new Jugador(0, pnombre, apaterno, posicion, 0);
+        if (flag == true) {
+            JOptionPane.showMessageDialog(this, "Seleccione una posicion", "Aviso", 1);
+        }
+        if (flag == false) {
+            try {
+                reg.agregarJugador(jugador);
+                JOptionPane.showMessageDialog(this, "El jugador se agrego correctamente", "Aviso", 1);
+            } catch (HeadlessException e) {
+                System.out.println("Error al agregar jugador" + e.getMessage());
+            }
+        }
+
     }//GEN-LAST:event_btn_inscribirActionPerformed
+
+    private void btn_mostrar_equiposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_mostrar_equiposActionPerformed
+        modelo.removeAllElements();
+        Registro reg = new Registro();
+        String nombre_equipo = "";
+        List<Equipo> lista1 = reg.listarEquipos();
+        
+        for (Equipo equipo : lista1) {
+            nombre_equipo = equipo.getNombre();
+            array.add(nombre_equipo);
+        }
+        
+        for (int i = 0; i < 10; i++) {
+            modelo.addElement();
+        }
+        
+        
+    }//GEN-LAST:event_btn_mostrar_equiposActionPerformed
 
     /**
      * @param args the command line arguments
@@ -263,12 +304,13 @@ public class InscribirJugador extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_inscribir;
+    private javax.swing.JButton btn_mostrar_equipos;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JList<String> jList1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JList<String> jlist_equipos;
     private javax.swing.JRadioButton rbtn_1;
     private javax.swing.JRadioButton rbtn_2;
     private javax.swing.JRadioButton rbtn_3;
